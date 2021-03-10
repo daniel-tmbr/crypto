@@ -55,6 +55,7 @@
 		E20984DB25F778E000011DBD /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20984DF25F778E000011DBD /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E20984E125F778E000011DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E209853125F77AC100011DBD /* Rest */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Rest; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +93,7 @@
 		E20984B025F778DA00011DBD = {
 			isa = PBXGroup;
 			children = (
+				E209850325F77A0C00011DBD /* Packages */,
 				E20984B525F778DA00011DBD /* Shared */,
 				E20984C225F778E000011DBD /* iOS */,
 				E20984C925F778E000011DBD /* macOS */,
@@ -157,6 +159,14 @@
 				E20984E125F778E000011DBD /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		E209850325F77A0C00011DBD /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				E209853125F77AC100011DBD /* Rest */,
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
