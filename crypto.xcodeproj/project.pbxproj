@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2078B0025FE2C9A0041077B /* ApiSecurityConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2078AFF25FE2C9A0041077B /* ApiSecurityConfig.swift */; };
+		E2078B3725FE34EB0041077B /* ApiSecurityConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2078AFF25FE2C9A0041077B /* ApiSecurityConfig.swift */; };
+		E2078B7A25FE8ED70041077B /* ConsumerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2078B7925FE8ED70041077B /* ConsumerKey.swift */; };
+		E2078B7B25FE8ED70041077B /* ConsumerKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2078B7925FE8ED70041077B /* ConsumerKey.swift */; };
+		E2078B8525FE8EE60041077B /* ConsumerKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2078B8425FE8EE60041077B /* ConsumerKeyView.swift */; };
+		E2078B8625FE8EE60041077B /* ConsumerKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2078B8425FE8EE60041077B /* ConsumerKeyView.swift */; };
 		E20984D525F778E000011DBD /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20984D425F778E000011DBD /* Tests_iOS.swift */; };
 		E20984E025F778E000011DBD /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20984DF25F778E000011DBD /* Tests_macOS.swift */; };
 		E20984E225F778E000011DBD /* crypto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E20984B625F778DA00011DBD /* crypto.xcdatamodeld */; };
@@ -19,6 +25,16 @@
 		E20984E925F778E000011DBD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20984BA25F778DA00011DBD /* Persistence.swift */; };
 		E20984EA25F778E000011DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20984BB25F778E000011DBD /* Assets.xcassets */; };
 		E20984EB25F778E000011DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20984BB25F778E000011DBD /* Assets.xcassets */; };
+		E212012D2600B35B00414A8D /* ApiSecurityConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212012C2600B35B00414A8D /* ApiSecurityConfigView.swift */; };
+		E212012E2600B35B00414A8D /* ApiSecurityConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212012C2600B35B00414A8D /* ApiSecurityConfigView.swift */; };
+		E21201432600B53700414A8D /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21201342600B43000414A8D /* ColorExtension.swift */; };
+		E212014C2600B53800414A8D /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21201342600B43000414A8D /* ColorExtension.swift */; };
+		E212015C260141CF00414A8D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212015B260141CF00414A8D /* SettingsView.swift */; };
+		E212015D260141CF00414A8D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E212015B260141CF00414A8D /* SettingsView.swift */; };
+		E21201642601428900414A8D /* Rest in Frameworks */ = {isa = PBXBuildFile; productRef = E21201632601428900414A8D /* Rest */; };
+		E21201662601428E00414A8D /* Rest in Frameworks */ = {isa = PBXBuildFile; productRef = E21201652601428E00414A8D /* Rest */; };
+		E23D67F525FD65510047431E /* ApiSecurityConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D67F425FD65510047431E /* ApiSecurityConfigViewModel.swift */; };
+		E23D67F625FD65510047431E /* ApiSecurityConfigViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D67F425FD65510047431E /* ApiSecurityConfigViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E2078AFF25FE2C9A0041077B /* ApiSecurityConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSecurityConfig.swift; sourceTree = "<group>"; };
+		E2078B4025FE4F690041077B /* crypto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = crypto.entitlements; sourceTree = "<group>"; };
+		E2078B7925FE8ED70041077B /* ConsumerKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerKey.swift; sourceTree = "<group>"; };
+		E2078B8425FE8EE60041077B /* ConsumerKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumerKeyView.swift; sourceTree = "<group>"; };
 		E20984B725F778DA00011DBD /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		E20984B825F778DA00011DBD /* cryptoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cryptoApp.swift; sourceTree = "<group>"; };
 		E20984B925F778DA00011DBD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +76,10 @@
 		E20984DF25F778E000011DBD /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E20984E125F778E000011DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E209853125F77AC100011DBD /* Rest */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Rest; sourceTree = "<group>"; };
+		E212012C2600B35B00414A8D /* ApiSecurityConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSecurityConfigView.swift; sourceTree = "<group>"; };
+		E21201342600B43000414A8D /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		E212015B260141CF00414A8D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E23D67F425FD65510047431E /* ApiSecurityConfigViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSecurityConfigViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21201642601428900414A8D /* Rest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21201662601428E00414A8D /* Rest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,9 +116,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E2078B8F25FE8EFA0041077B /* ConsumerKey */ = {
+			isa = PBXGroup;
+			children = (
+				E2078B8425FE8EE60041077B /* ConsumerKeyView.swift */,
+				E2078B7925FE8ED70041077B /* ConsumerKey.swift */,
+			);
+			path = ConsumerKey;
+			sourceTree = "<group>";
+		};
+		E2078B9F25FE8FAF0041077B /* ApiSecurityConfig */ = {
+			isa = PBXGroup;
+			children = (
+				E2078AFF25FE2C9A0041077B /* ApiSecurityConfig.swift */,
+				E212012C2600B35B00414A8D /* ApiSecurityConfigView.swift */,
+				E23D67F425FD65510047431E /* ApiSecurityConfigViewModel.swift */,
+			);
+			path = ApiSecurityConfig;
+			sourceTree = "<group>";
+		};
 		E20984B025F778DA00011DBD = {
 			isa = PBXGroup;
 			children = (
+				E2078B4025FE4F690041077B /* crypto.entitlements */,
 				E209850325F77A0C00011DBD /* Packages */,
 				E20984B525F778DA00011DBD /* Shared */,
 				E20984C225F778E000011DBD /* iOS */,
@@ -100,12 +146,15 @@
 				E20984D325F778E000011DBD /* Tests iOS */,
 				E20984DE25F778E000011DBD /* Tests macOS */,
 				E20984C125F778E000011DBD /* Products */,
+				E21201622601428900414A8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		E20984B525F778DA00011DBD /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E2120155260140FC00414A8D /* Settings */,
+				E21201332600B42900414A8D /* Extensions */,
 				E20984B825F778DA00011DBD /* cryptoApp.swift */,
 				E20984B925F778DA00011DBD /* ContentView.swift */,
 				E20984BA25F778DA00011DBD /* Persistence.swift */,
@@ -169,6 +218,39 @@
 			path = Packages;
 			sourceTree = "<group>";
 		};
+		E21201332600B42900414A8D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E21201342600B43000414A8D /* ColorExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E2120155260140FC00414A8D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E212015B260141CF00414A8D /* SettingsView.swift */,
+				E21201562601410200414A8D /* ConnectedApis */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E21201562601410200414A8D /* ConnectedApis */ = {
+			isa = PBXGroup;
+			children = (
+				E2078B8F25FE8EFA0041077B /* ConsumerKey */,
+				E2078B9F25FE8FAF0041077B /* ApiSecurityConfig */,
+			);
+			path = ConnectedApis;
+			sourceTree = "<group>";
+		};
+		E21201622601428900414A8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,6 +267,9 @@
 			dependencies = (
 			);
 			name = "crypto (iOS)";
+			packageProductDependencies = (
+				E21201632601428900414A8D /* Rest */,
+			);
 			productName = "crypto (iOS)";
 			productReference = E20984C025F778E000011DBD /* crypto.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +287,9 @@
 			dependencies = (
 			);
 			name = "crypto (macOS)";
+			packageProductDependencies = (
+				E21201652601428E00414A8D /* Rest */,
+			);
 			productName = "crypto (macOS)";
 			productReference = E20984C825F778E000011DBD /* crypto.app */;
 			productType = "com.apple.product-type.application";
@@ -327,9 +415,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E20984E425F778E000011DBD /* cryptoApp.swift in Sources */,
+				E23D67F525FD65510047431E /* ApiSecurityConfigViewModel.swift in Sources */,
+				E2078B0025FE2C9A0041077B /* ApiSecurityConfig.swift in Sources */,
+				E2078B7A25FE8ED70041077B /* ConsumerKey.swift in Sources */,
 				E20984E825F778E000011DBD /* Persistence.swift in Sources */,
+				E212012D2600B35B00414A8D /* ApiSecurityConfigView.swift in Sources */,
 				E20984E225F778E000011DBD /* crypto.xcdatamodeld in Sources */,
+				E212014C2600B53800414A8D /* ColorExtension.swift in Sources */,
 				E20984E625F778E000011DBD /* ContentView.swift in Sources */,
+				E2078B8525FE8EE60041077B /* ConsumerKeyView.swift in Sources */,
+				E212015C260141CF00414A8D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,10 +432,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E23D67F625FD65510047431E /* ApiSecurityConfigViewModel.swift in Sources */,
 				E20984E525F778E000011DBD /* cryptoApp.swift in Sources */,
+				E2078B7B25FE8ED70041077B /* ConsumerKey.swift in Sources */,
 				E20984E925F778E000011DBD /* Persistence.swift in Sources */,
 				E20984E325F778E000011DBD /* crypto.xcdatamodeld in Sources */,
+				E212012E2600B35B00414A8D /* ApiSecurityConfigView.swift in Sources */,
+				E21201432600B53700414A8D /* ColorExtension.swift in Sources */,
+				E2078B3725FE34EB0041077B /* ApiSecurityConfig.swift in Sources */,
+				E2078B8625FE8EE60041077B /* ConsumerKeyView.swift in Sources */,
 				E20984E725F778E000011DBD /* ContentView.swift in Sources */,
+				E212015D260141CF00414A8D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +594,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = crypto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VNN8LWX58P;
 				ENABLE_PREVIEWS = YES;
@@ -514,6 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = crypto.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VNN8LWX58P;
 				ENABLE_PREVIEWS = YES;
@@ -718,6 +822,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E21201632601428900414A8D /* Rest */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Rest;
+		};
+		E21201652601428E00414A8D /* Rest */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Rest;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E20984B625F778DA00011DBD /* crypto.xcdatamodeld */ = {
