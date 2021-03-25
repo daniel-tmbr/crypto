@@ -5,7 +5,9 @@ struct ContentView: View {
     public init() {}
     
     var body: some View {
-        SettingsView()
+        NavigationView {
+            ConnectedApisView()
+        }
     }
 }
 

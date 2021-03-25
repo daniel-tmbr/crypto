@@ -1,10 +1,3 @@
-//
-//  cryptoApp.swift
-//  Shared
-//
-//  Created by Daniel Tombor on 09/03/2021.
-//
-
 import SwiftUI
 
 @main
@@ -16,5 +9,10 @@ struct cryptoApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+        #if os(macOS)
+        Settings {
+            ConnectedApisView()
+        }
+        #endif
     }
 }
