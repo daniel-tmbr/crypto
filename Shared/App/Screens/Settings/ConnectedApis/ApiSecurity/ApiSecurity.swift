@@ -16,22 +16,22 @@ extension ApiSecurity {
     static let binance = ApiSecurity(
         name: "Binance",
         keys: [
-            SecurityKey(name: "API Key", key: SecureStringStore.binanceApiKey),
-            SecurityKey(name: "API Secret", key: SecureStringStore.binanceApiKey),
+            SecurityKey(name: L10n.Binance.apiKey, key: SecureStringStore.binanceApiKey),
+            SecurityKey(name: L10n.Binance.apiSecret, key: SecureStringStore.binanceApiKey),
         ],
-        help: URL(string: "https://www.binance.com/en/my/settings/api-management")!
+        help: URL(string: L10n.Binance.helpUrl)!
     )
     
     static let twitter = ApiSecurity(
         name: "Twitter",
         keys: [
-            SecurityKey(name: "API Key", key: SecureStringStore.twitterApiKey),
-            SecurityKey(name: "API Secret", key: SecureStringStore.twitterApiSectet),
-            SecurityKey(name: "Access Token", key: SecureStringStore.twitterAccessToken),
-            SecurityKey(name: "Access Token Secret", key: SecureStringStore.twitterAccessTokenSecret),
-            SecurityKey(name: "Bearer Token", key: SecureStringStore.twitterBearerToken),
+            SecurityKey(name: L10n.Twitter.apiKey, key: SecureStringStore.twitterApiKey),
+            SecurityKey(name: L10n.Twitter.apiSecret, key: SecureStringStore.twitterApiSectet),
+            SecurityKey(name: L10n.Twitter.accessToken, key: SecureStringStore.twitterAccessToken),
+            SecurityKey(name: L10n.Twitter.accessTokenSecret, key: SecureStringStore.twitterAccessTokenSecret),
+            SecurityKey(name: L10n.Twitter.bearerToken, key: SecureStringStore.twitterBearerToken),
         ],
-        help: URL(string: "https://developer.twitter.com/en/docs/apps/overview")!
+        help: URL(string: L10n.Twitter.helpUrl)!
     )
 }
 

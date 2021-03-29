@@ -14,7 +14,7 @@ struct ConnectedApisView: View {
                 .ignoresSafeArea()
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    Text("To use the app, you have to provide your own Secret Keys for the following APIs.")
+                    Text(L10n.Apis.subtitle.localizedKey)
                         .padding(.bottom)
                     ForEach(apis) { api in
                         ApiSecurityView(api)
@@ -23,15 +23,15 @@ struct ConnectedApisView: View {
                     HStack {
                         Image(systemName: "lock.shield.fill")
                             .foregroundColor(.blue)
-                        Text("Secret Keys are stored securely in Apple's Keychain and only displayed while you're typing them in. You can delete and replace them any time.")
+                        Text(L10n.Apis.footnote.localizedKey)
                             .font(.footnote)
                     }
                     .foregroundColor(Color.secondaryLabel)
                 }
                 .padding()
             }
-            .navigationTitle("Connected APIs")
         }
+        .navigationTitle(L10n.Apis.title.localizedKey)
     }
 }
 

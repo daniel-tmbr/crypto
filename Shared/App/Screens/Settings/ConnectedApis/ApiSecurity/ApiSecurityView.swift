@@ -2,6 +2,9 @@ import SwiftUI
 
 struct ApiSecurityView: View {
     private let apiSecurity: ApiSecurity
+    #if os(macOS)
+    @Environment(\.openURL) var openURL
+    #endif
     
     init(_ security: ApiSecurity) { self.apiSecurity = security }
     
@@ -15,8 +18,17 @@ struct ApiSecurityView: View {
                         .padding(.vertical, 4)
                 Divider()
             }
-            Link("How to setup \(apiSecurity.name) keys", destination: apiSecurity.help)
+            #if os(iOS)
+            Link(L10n.Apis.setup(apiSecurity.name), destination: apiSecurity.help)
                 .padding(.top, 4)
+            #else
+            // TECHDEBT: Link was freezing the macOS app
+            Button(L10n.Apis.setup(apiSecurity.name)) {
+                openURL(apiSecurity.help)
+            }
+            .padding(.top, 4)
+            .buttonStyle(AccentButtonStyle())
+            #endif
         }
         .padding()
         .background(Color.background)

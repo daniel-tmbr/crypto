@@ -3,7 +3,7 @@ import SwiftUI
 struct AccentButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundColor(Color.accentColor.opacity(configuration.isPressed ? 0.7 : 1))
+            .foregroundColor(Color.accent.opacity(configuration.isPressed ? 0.7 : 1))
     }
 }
 

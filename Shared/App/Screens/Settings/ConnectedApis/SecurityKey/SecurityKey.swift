@@ -30,7 +30,7 @@ final class SecurityKey: ObservableObject {
         if let string = pasteboard.getString() {
             store(key: string)
         } else {
-            error = "Nothing to paste"
+            error = L10n.SecurityKey.emptyPasteboard
         }
     }
     

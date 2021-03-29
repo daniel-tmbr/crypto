@@ -13,7 +13,7 @@ struct SecurityKeyView: View {
                 emptyView
             }
             if !key.error.isEmpty {
-                Text(key.error).foregroundColor(Color(.systemRed))
+                Text(key.error.localizedKey).foregroundColor(Color(.systemRed))
             }
         }
     }
@@ -21,7 +21,7 @@ struct SecurityKeyView: View {
     private var emptyView: some View {
         HStack {
             Image(systemName: key.error.isEmpty ? "seal" : "xmark.seal")
-            TextField("Paste \(key.name)", text: $key.value, onCommit: { key.commit() })
+            TextField(L10n.SecurityKey.placeholder(key.name), text: $key.value, onCommit: { key.commit() })
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(5)
                 .background(Color(.gray).opacity(0.1))
@@ -39,7 +39,7 @@ struct SecurityKeyView: View {
         HStack {
             Image(systemName: "checkmark.seal.fill")
                 .foregroundColor(Color(.systemGreen))
-            Text("\(key.name) has been set")
+            Text(L10n.SecurityKey.stored(key.name))
                 .truncationMode(.tail)
                 .lineLimit(2)
             Spacer()

@@ -1,0 +1,30 @@
+"apis.footnote" = "Secret Keys are stored securely in Apple's Keychain and only displayed while you're typing them in. You can delete and replace them any time.";
+// Example: How to setup Binance keys
+"apis.setup.%@" = "How to setup %@ keys";
+"apis.subtitle" = "To use the app, you have to provide your own Secret Keys for the following APIs.";
+"apis.title" = "Connected APIs";
+
+"binance.apiKey" = "API Key";
+"binance.apiSecret" = "API Secret";
+"binance.helpUrl" = "https://www.binance.com/en/my/settings/api-management";
+
+"navigation.account" = "Account";
+"navigation.coins" = "Coins";
+"navigation.home" = "Home";
+"navigation.settings" = "Settings";
+
+"securitykey.emptypasteboard" = "The pasteboard is empty";
+// Example: Paste your API Key
+"securitykey.placeholder.%@" = "Paste your %@";
+// Example: API Secret has been set
+"securitykey.stored.%@" = "%@ has been set";
+
+"settings.title" = "Settings";
+"settings.apis" = "Connected APIs";
+
+"twitter.accessToken" = "Access Token";
+"twitter.accessTokenSecret" = "Access Token Secret";
+"twitter.apiKey" = "API Key";
+"twitter.apiSecret" = "API Secret";
+"twitter.bearerToken" = "Bearer Token";
+"twitter.helpUrl" = "https://developer.twitter.com/en/docs/apps/overview";
