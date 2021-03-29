@@ -25,7 +25,9 @@ enum L10n {
     }
     
     enum SecurityKey {
+        static let delete = "securitykey.delete"
         static let emptyPasteboard = "securitykey.emptypasteboard"
+        static let paste = "securitykey.paste"
         static func placeholder(_ string: String) -> LocalizedStringKey {
             "securitykey.placeholder.\(string.localized)"
         }

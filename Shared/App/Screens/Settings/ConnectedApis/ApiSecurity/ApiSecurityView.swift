@@ -13,6 +13,7 @@ struct ApiSecurityView: View {
             Text(apiSecurity.name)
                 .font(.title2)
                 .padding(.bottom, 4)
+                .accessibilityAddTraits(.isHeader)
             ForEach(apiSecurity.keys, id: \.name) { key in
                 SecurityKeyView(key: key)
                         .padding(.vertical, 4)

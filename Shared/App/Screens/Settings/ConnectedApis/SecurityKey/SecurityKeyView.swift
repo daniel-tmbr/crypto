@@ -13,7 +13,8 @@ struct SecurityKeyView: View {
                 emptyView
             }
             if !key.error.isEmpty {
-                Text(key.error.localizedKey).foregroundColor(Color(.systemRed))
+                Text(key.error.localizedKey)
+                    .foregroundColor(Color(.systemRed))
             }
         }
     }
@@ -21,17 +22,22 @@ struct SecurityKeyView: View {
     private var emptyView: some View {
         HStack {
             Image(systemName: key.error.isEmpty ? "seal" : "xmark.seal")
+                .accessibilityHidden(true)
             TextField(L10n.SecurityKey.placeholder(key.name), text: $key.value, onCommit: { key.commit() })
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(5)
                 .background(Color(.gray).opacity(0.1))
                 .cornerRadius(4)
+                .accessibilityAction(named: L10n.SecurityKey.paste.localizedKey) {
+                    key.paste()
+                }
             Button {
                 key.paste()
             } label: {
                 Image(systemName: "doc.on.clipboard")
             }
             .buttonStyle(AccentButtonStyle())
+            .accessibilityHidden(true)
         }
     }
     
@@ -39,6 +45,7 @@ struct SecurityKeyView: View {
         HStack {
             Image(systemName: "checkmark.seal.fill")
                 .foregroundColor(Color(.systemGreen))
+                .accessibilityHidden(true)
             Text(L10n.SecurityKey.stored(key.name))
                 .truncationMode(.tail)
                 .lineLimit(2)
@@ -48,6 +55,7 @@ struct SecurityKeyView: View {
                 key.commit()
             }, label: {
                 Image(systemName: "trash")
+                    .accessibilityLabel(L10n.SecurityKey.delete.localizedKey)
             })
             .buttonStyle(AccentButtonStyle())
         }

@@ -13,9 +13,11 @@
 "navigation.home" = "Home";
 "navigation.settings" = "Settings";
 
-"securitykey.emptypasteboard" = "The pasteboard is empty";
+"securitykey.delete" = "Reset";
+"securitykey.emptypasteboard" = "Clipboard is empty";
+"securitykey.paste" = "Paste from clipboard";
 // Example: Paste your API Key
-"securitykey.placeholder.%@" = "Paste your %@";
+"securitykey.placeholder.%@" = "Set your %@";
 // Example: API Secret has been set
 "securitykey.stored.%@" = "%@ has been set";
 

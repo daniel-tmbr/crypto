@@ -8,13 +8,18 @@ struct ConnectedApisView: View {
         self.apis = apis
     }
     
+    private let subtitleText = Text(L10n.Apis.subtitle.localizedKey)
+    private let footnoteText = Text(L10n.Apis.footnote.localizedKey)
+    
     var body: some View {
         ZStack {
             Color.secondaryBackground
                 .ignoresSafeArea()
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    Text(L10n.Apis.subtitle.localizedKey)
+                    subtitleText
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityHint(subtitleText)
                         .padding(.bottom)
                     ForEach(apis) { api in
                         ApiSecurityView(api)
@@ -23,9 +28,11 @@ struct ConnectedApisView: View {
                     HStack {
                         Image(systemName: "lock.shield.fill")
                             .foregroundColor(.blue)
-                        Text(L10n.Apis.footnote.localizedKey)
+                        footnoteText
                             .font(.footnote)
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibility(hint: footnoteText)
                     .foregroundColor(Color.secondaryLabel)
                 }
                 .padding()

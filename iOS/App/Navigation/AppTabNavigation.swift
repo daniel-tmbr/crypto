@@ -16,7 +16,7 @@ struct AppTabNavigation: View {
             }
             .tabItem {
                 Label(L10n.Navigation.home.localizedKey, systemImage: "house")
-                    .accessibility(label: Text(L10n.Navigation.home.localizedKey))
+                    .accessibilityLabel(L10n.Navigation.home.localizedKey)
             }
             .tag(Screen.home)
 
@@ -25,7 +25,7 @@ struct AppTabNavigation: View {
             }
             .tabItem {
                 Label(L10n.Navigation.account.localizedKey, systemImage: "person.crop.circle")
-                    .accessibility(label: Text(L10n.Navigation.account.localizedKey))
+                    .accessibilityLabel(L10n.Navigation.account.localizedKey)
             }
             .tag(Screen.account)
 
@@ -34,7 +34,7 @@ struct AppTabNavigation: View {
             }
             .tabItem {
                 Label(L10n.Navigation.coins.localizedKey, systemImage: "bitcoinsign.circle")
-                    .accessibility(label: Text(L10n.Navigation.coins.localizedKey))
+                    .accessibilityLabel(L10n.Navigation.coins.localizedKey)
             }
             .tag(Screen.coins)
 
@@ -43,7 +43,7 @@ struct AppTabNavigation: View {
             }
             .tabItem {
                 Label(L10n.Navigation.settings.localizedKey, systemImage: "gearshape")
-                    .accessibility(label: Text(L10n.Navigation.settings.localizedKey))
+                    .accessibilityLabel(L10n.Navigation.settings.localizedKey)
             }
             .tag(Screen.settings)
         }

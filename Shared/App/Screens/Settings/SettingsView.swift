@@ -16,7 +16,7 @@ struct SettingsView: View {
                 selection: $selection
             ) {
                 Label(L10n.Apis.title.localizedKey, systemImage: "network")
-                    .accessibility(label: Text(L10n.Apis.title.localizedKey))
+                    .accessibilityLabel(L10n.Apis.title.localizedKey)
             }
             .tag(Page.apis)
         }
