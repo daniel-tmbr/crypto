@@ -37,6 +37,8 @@
 		E2790596261211F5008EE795 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2724FC82611E7D8003874AF /* Localizable.strings */; };
 		E2790597261211F6008EE795 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2724FC82611E7D8003874AF /* Localizable.strings */; };
 		E279059C2612131B008EE795 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20984BB25F778E000011DBD /* Assets.xcassets */; };
+		E27905A826146FFA008EE795 /* Binance in Frameworks */ = {isa = PBXBuildFile; productRef = E27905A726146FFA008EE795 /* Binance */; };
+		E27905AA26146FFF008EE795 /* Binance in Frameworks */ = {isa = PBXBuildFile; productRef = E27905A926146FFF008EE795 /* Binance */; };
 		E2996180260B40B900E5CF91 /* AccentButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299617F260B40B900E5CF91 /* AccentButtonStyle.swift */; };
 		E2996189260B40FE00E5CF91 /* AccentButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299617F260B40B900E5CF91 /* AccentButtonStyle.swift */; };
 		E29961AF260CF77500E5CF91 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29961AE260CF77500E5CF91 /* Colors.swift */; };
@@ -102,6 +104,7 @@
 		E2724FBF2611E7D5003874AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E2724FC72611E7D8003874AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E2724FCD2611E864003874AF /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		E27905A226131ECA008EE795 /* Binance */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Binance; sourceTree = "<group>"; };
 		E299617F260B40B900E5CF91 /* AccentButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccentButtonStyle.swift; sourceTree = "<group>"; };
 		E29961AE260CF77500E5CF91 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		E29961C1260D05D200E5CF91 /* AppTabNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTabNavigation.swift; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21201642601428900414A8D /* Rest in Frameworks */,
+				E27905A826146FFA008EE795 /* Binance in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21201662601428E00414A8D /* Rest in Frameworks */,
+				E27905AA26146FFF008EE795 /* Binance in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +254,7 @@
 		E209850325F77A0C00011DBD /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				E27905A226131ECA008EE795 /* Binance */,
 				E209853125F77AC100011DBD /* Rest */,
 			);
 			path = Packages;
@@ -443,6 +449,7 @@
 			name = "crypto (iOS)";
 			packageProductDependencies = (
 				E21201632601428900414A8D /* Rest */,
+				E27905A726146FFA008EE795 /* Binance */,
 			);
 			productName = "crypto (iOS)";
 			productReference = E20984C025F778E000011DBD /* crypto.app */;
@@ -463,6 +470,7 @@
 			name = "crypto (macOS)";
 			packageProductDependencies = (
 				E21201652601428E00414A8D /* Rest */,
+				E27905A926146FFF008EE795 /* Binance */,
 			);
 			productName = "crypto (macOS)";
 			productReference = E20984C825F778E000011DBD /* crypto.app */;
@@ -1045,6 +1053,14 @@
 		E21201652601428E00414A8D /* Rest */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Rest;
+		};
+		E27905A726146FFA008EE795 /* Binance */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Binance;
+		};
+		E27905A926146FFF008EE795 /* Binance */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Binance;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -44,3 +44,11 @@ public struct SecureStringKey {
         self.name = name
     }
 }
+
+extension SecureStringKey {
+    public static let apiKey = SecureStringKey("apiKey")
+    public static let apiSecret = SecureStringKey("apiSecret")
+    public static let accessToken = SecureStringKey("accessToken")
+    public static let accessTokenSecret = SecureStringKey("accessTokenSecret")
+    public static let bearerToken = SecureStringKey("bearerToken")
+}

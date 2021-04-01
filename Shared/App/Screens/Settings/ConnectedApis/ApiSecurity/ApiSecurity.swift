@@ -1,3 +1,4 @@
+import Binance
 import Combine
 import Foundation
 import Rest
@@ -38,9 +39,6 @@ extension ApiSecurity {
 // TODO: Temporary implementation, needs to be moved to the domain frameworks
 
 extension SecureStringStore {
-    static let binanceApiKey = SecureStringStore(identifier: .binance, key: .apiKey)
-    static let binanceApiSecret = SecureStringStore(identifier: .binance, key: .apiSecret)
-    
     static let twitterApiKey = SecureStringStore(identifier: .twitter, key: .apiKey)
     static let twitterApiSectet = SecureStringStore(identifier: .twitter, key: .apiSecret)
     static let twitterAccessToken = SecureStringStore(identifier: .twitter, key: .accessToken)
@@ -49,14 +47,5 @@ extension SecureStringStore {
 }
 
 extension SecureStringIdentifier {
-    static let binance = SecureStringIdentifier("Binance")
     static let twitter = SecureStringIdentifier("Twitter")
-}
-
-extension SecureStringKey {
-    static let apiKey = SecureStringKey("apiKey")
-    static let apiSecret = SecureStringKey("apiSecret")
-    static let accessToken = SecureStringKey("accessToken")
-    static let accessTokenSecret = SecureStringKey("accessTokenSecret")
-    static let bearerToken = SecureStringKey("bearerToken")
 }
