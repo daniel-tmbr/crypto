@@ -2,47 +2,60 @@ import Combine
 import Foundation
 
 public struct ResponsePublisher<Response: Decodable>: Publisher {
-    public typealias Input = (data: Data, response: URLResponse)
-    public typealias Parser = (Input) throws -> Response
     public typealias Output = Response
     public typealias Failure = RequestError
     
-    private let upstream: AnyPublisher<Input, RequestError>
-    private let parser: Parser
+    private let publisher: AnyPublisher<Response, RequestError>
     
-    init(upstream: AnyPublisher<Input, RequestError>, parser: @escaping Parser) {
-        self.upstream = upstream
-        self.parser = parser
-    }
-    
-    init(upstream: AnyPublisher<Input, URLError>, parser: @escaping Parser) {
-        let mappedUpstream = upstream
-            .mapError(RequestError.init(urlError:))
+    public init<R: Request, Upstream: Publisher>(
+        urlSession: URLSession,
+        request: R,
+        requestDataPublisher: Upstream
+    )
+    where R.ResponseDataType == Response,
+          Upstream.Output == R.RequestDataType,
+          Upstream.Failure == Never
+    {
+        publisher = requestDataPublisher
+            .tryMap(request.assemble)
+            .mapError { RequestError(error: $0, category: .compose) }
+            .map {
+                urlSession
+                    .dataTaskPublisher(for: $0)
+                    .mapError(RequestError.init(urlError:))
+                    .tryMap(request.parse)
+                    .mapError { RequestError(error: $0, category: .response) }
+            }
+            .switchToLatest()
             .eraseToAnyPublisher()
-        self.init(upstream: mappedUpstream, parser: parser)
     }
     
+    public init<R: Request>(
+        urlSession: URLSession,
+        request: R,
+        requestData: R.RequestDataType
+    )
+    where R.ResponseDataType == Response
+    {
+        self.init(
+            urlSession: urlSession,
+            request: request,
+            requestDataPublisher: Just(requestData)
+        )
+    }
+    
+    public init(anyPublisher: AnyPublisher<Response, RequestError>) {
+        publisher = anyPublisher
+    }
+    
+    public init<Upstream: Publisher>(wrap upstream: Upstream)
+    where Upstream.Output == Output,
+          Upstream.Failure == Failure
+    {
+        self.init(anyPublisher: upstream.eraseToAnyPublisher())
+    }
+        
     public func receive<S>(subscriber: S) where S : Subscriber, Self.Failure == S.Failure, Self.Output == S.Input {
-        upstream
-            .tryMap(parser)
-            .mapError { RequestError(error: $0, category: .response) }
-            .subscribe(subscriber)
+        publisher.subscribe(subscriber)
     }
 }
-
-public extension Publisher where Output == (data: Data, response: URLResponse), Failure == URLError {
-    func responsePublisher<Response: Decodable>(
-        parser: @escaping (_ data: Data, _ response: URLResponse) throws -> Response
-    ) -> ResponsePublisher<Response> {
-        ResponsePublisher(upstream: self.eraseToAnyPublisher(), parser: parser)
-    }
-}
-
-public extension Publisher where Output == (data: Data, response: URLResponse), Failure == RequestError {
-    func responsePublisher<Response: Decodable>(
-        parser: @escaping (_ data: Data, _ response: URLResponse) throws -> Response
-    ) -> ResponsePublisher<Response> {
-        ResponsePublisher(upstream: self.eraseToAnyPublisher(), parser: parser)
-    }
-}
-

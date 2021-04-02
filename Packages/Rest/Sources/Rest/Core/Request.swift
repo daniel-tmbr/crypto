@@ -9,18 +9,17 @@ public protocol Request {
 }
 
 extension Request {
-    func requestPublisher(from data: RequestDataType) -> RequestPublisher<RequestDataType> {
-        RequestPublisher(parameter: data, assembler: assemble)
+    public func publisher<Upstream>(requestDataPublisher upstream: Upstream,
+                                    urlSession: URLSession) -> ResponsePublisher<ResponseDataType>
+    where Upstream: Publisher,
+          Upstream.Output == RequestDataType,
+          Upstream.Failure == Never
+    {
+        ResponsePublisher(urlSession: urlSession, request: self, requestDataPublisher: upstream)
     }
     
     public func publisher(parameters: RequestDataType, urlSession: URLSession = .shared) -> ResponsePublisher<ResponseDataType> {
-        requestPublisher(from: parameters)
-            .flatMap {
-                urlSession
-                    .dataTaskPublisher(for: $0)
-                    .mapError(RequestError.init(urlError:))
-            }
-            .responsePublisher(parser: parse)
+        publisher(requestDataPublisher: Just(parameters), urlSession: urlSession)
     }
 }
 
