@@ -4,7 +4,7 @@
 import Foundation
 import Rest
 
-struct SystemStatusRequest: Request {
+struct SystemStatusRequest: BinanceRequest {
     private let baseUrl: URL
     private let decoder: JSONDecoder
 
@@ -26,10 +26,8 @@ struct SystemStatusRequest: Request {
     func parse(data: Data, response: URLResponse) throws -> SystemStatus {
         return try decoder.decode(SystemStatus.self, from: data)
     }
-}
 
-extension SystemStatusRequest: BinanceApiRequest {
-    func binanceApiRequest() -> BinanceRequest<RequestDataType, ResponseDataType> {
-        binanceRequest()
+    func apiRequest() -> BinanceApiRequest<Void, SystemStatus> {
+        apiRequest()
     }
 }

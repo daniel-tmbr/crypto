@@ -4,7 +4,7 @@
 import Foundation
 import Rest
 
-struct AccountSnapshotRequest<SnapshotConfig>: Request where SnapshotConfig: SnapshotRequestConfig {
+struct AccountSnapshotRequest<SnapshotConfig>: BinanceRequest where SnapshotConfig: SnapshotRequestConfig {
     private let url: URL
     private let config: SnapshotConfig
     private let decoder: JSONDecoder
@@ -19,12 +19,12 @@ struct AccountSnapshotRequest<SnapshotConfig>: Request where SnapshotConfig: Sna
     
     func assemble(from params: AccountSnapshotParams) throws -> URLRequest {
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        else { throw RequestAssemblyError.components(url) }
+        else { throw RequestAssemblyError.malformedUrl(url) }
         
         components.queryItems = (try QueryItemEncoder().encode(config.type)) + (try QueryItemEncoder().encode(params))
         
         guard let finalUrl = components.url
-        else { throw RequestAssemblyError.composeUrl(components) }
+        else { throw RequestAssemblyError.invalidComponents(components) }
         
         return URLRequest.get(url: finalUrl)
     }
@@ -32,10 +32,8 @@ struct AccountSnapshotRequest<SnapshotConfig>: Request where SnapshotConfig: Sna
     func parse(data: Data, response: URLResponse) throws -> AccountSnapshot<SnapshotConfig.Response> {
         try decoder.decode(ResponseDataType.self, from: data)
     }
-}
 
-extension AccountSnapshotRequest: BinanceApiRequest {
-    func binanceApiRequest() -> BinanceRequest<RequestDataType, ResponseDataType> {
-        binanceRequest(security: .userData)
+    func apiRequest() -> BinanceApiRequest<RequestDataType, ResponseDataType> {
+        binanceApiRequest(security: .userData)
     }
 }

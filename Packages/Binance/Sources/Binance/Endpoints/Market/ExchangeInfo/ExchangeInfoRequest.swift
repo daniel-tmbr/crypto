@@ -4,7 +4,7 @@
 import Foundation
 import Rest
 
-struct ExchangeInfoRequest: Request {
+struct ExchangeInfoRequest: BinanceRequest {
     private let url: URL
     private let decoder: JSONDecoder
     
@@ -21,10 +21,8 @@ struct ExchangeInfoRequest: Request {
     func parse(data: Data, response: URLResponse) throws -> ExchangeInfo {
         try decoder.decode(ResponseDataType.self, from: data)
     }
-}
 
-extension ExchangeInfoRequest: BinanceApiRequest {
-    func binanceApiRequest() -> BinanceRequest<RequestDataType, ResponseDataType> {
-        binanceRequest()
+    func apiRequest() -> BinanceApiRequest<RequestDataType, ResponseDataType> {
+        binanceApiRequest()
     }
 }

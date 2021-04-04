@@ -9,8 +9,8 @@ public protocol Request {
 }
 
 extension Request {
-    public func publisher<Upstream>(requestDataPublisher upstream: Upstream,
-                                    urlSession: URLSession) -> ResponsePublisher<ResponseDataType>
+    public func publisher<Upstream>(urlSession: URLSession,
+                                    requestDataPublisher upstream: Upstream) -> ResponsePublisher<ResponseDataType>
     where Upstream: Publisher,
           Upstream.Output == RequestDataType,
           Upstream.Failure == Never
@@ -18,13 +18,13 @@ extension Request {
         ResponsePublisher(urlSession: urlSession, request: self, requestDataPublisher: upstream)
     }
     
-    public func publisher(parameters: RequestDataType, urlSession: URLSession = .shared) -> ResponsePublisher<ResponseDataType> {
-        publisher(requestDataPublisher: Just(parameters), urlSession: urlSession)
+    public func publisher(urlSession: URLSession = .shared, parameters: RequestDataType) -> ResponsePublisher<ResponseDataType> {
+        publisher(urlSession: urlSession, requestDataPublisher: Just(parameters))
     }
 }
 
 extension Request where RequestDataType == Void {
     public func publisher(urlSession: URLSession = .shared) -> ResponsePublisher<ResponseDataType> {
-        publisher(parameters: (), urlSession:  urlSession)
+        publisher(urlSession:  urlSession, parameters: ())
     }
 }

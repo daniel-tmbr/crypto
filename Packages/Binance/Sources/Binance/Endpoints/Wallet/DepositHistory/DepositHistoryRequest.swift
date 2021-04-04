@@ -4,7 +4,7 @@
 import Foundation
 import Rest
 
-struct DepositHistoryRequest: Request {
+struct DepositHistoryRequest: BinanceRequest {
     private let url: URL
     private let decoder: JSONDecoder
 
@@ -16,12 +16,12 @@ struct DepositHistoryRequest: Request {
 
     func assemble(from params: DepositHistoryParams) throws -> URLRequest {
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-            else { throw RequestAssemblyError.components(url) }
+            else { throw RequestAssemblyError.malformedUrl(url) }
 
         components.queryItems = try QueryItemEncoder().encode(params)
 
         guard let finalUrl = components.url
-            else { throw RequestAssemblyError.composeUrl(components) }
+            else { throw RequestAssemblyError.invalidComponents(components) }
 
         return URLRequest.get(url: finalUrl)
     }
@@ -29,10 +29,8 @@ struct DepositHistoryRequest: Request {
     func parse(data: Data, response: URLResponse) throws -> [Deposit] {
         try decoder.decode(ResponseDataType.self, from: data)
     }
-}
 
-extension DepositHistoryRequest: BinanceApiRequest {
-    func binanceApiRequest() -> BinanceRequest<RequestDataType, ResponseDataType> {
-        binanceRequest(security: .userData)
+    func apiRequest() -> BinanceApiRequest<DepositHistoryParams, [Deposit]> {
+        binanceApiRequest(security: .userData)
     }
 }
