@@ -32,14 +32,14 @@ struct AppSidebarNavigation: View {
             .tag(Screen.account)
 
             NavigationLink(
-                destination: CoinsView(),
-                tag: Screen.coins,
+                destination: SymbolsView(),
+                tag: Screen.market,
                 selection: $screen
             ) {
                 Label(L10n.Navigation.coins.localizedKey, systemImage: "bitcoinsign.circle")
                     .accessibilityLabel(L10n.Navigation.coins.localizedKey)
             }
-            .tag(Screen.coins)
+            .tag(Screen.market)
             
             NavigationLink(
                 destination: SettingsView(),

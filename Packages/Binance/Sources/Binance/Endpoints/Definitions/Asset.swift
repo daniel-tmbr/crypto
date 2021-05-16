@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Asset: Codable {
+public struct Asset: Codable, Hashable {
     public let value: String
 
     public init(_ value: String) {

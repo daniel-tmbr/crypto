@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E232" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="1.0">
+    <entity name="Asset" representedClassName="AssetEntity" syncable="YES">
+        <attribute name="coin" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="isDelisted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isTrading" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <fetchIndex name="byName">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byCoin">
+            <fetchIndexElement property="coin" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Kline" representedClassName="KlineEntity" syncable="YES">
+        <attribute name="close" attributeType="Double" usesScalarValueType="NO"/>
+        <attribute name="closeTime" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="high" attributeType="Double" usesScalarValueType="NO"/>
+        <attribute name="interval" attributeType="String"/>
+        <attribute name="low" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="numberOfTrandes" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="open" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="openTime" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="quoteAssetVolume" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="volume" attributeType="Double" usesScalarValueType="YES"/>
+        <relationship name="symbol" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="klines" inverseEntity="Symbol"/>
+    </entity>
+    <entity name="Symbol" representedClassName="SymbolEntity" syncable="YES">
+        <attribute name="baseAsset" optional="YES" attributeType="String"/>
+        <attribute name="basePrecision" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="delisted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isOcoAllowed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isSpotTradingAllowed" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="orderTypes" attributeType="String"/>
+        <attribute name="permissions" optional="YES" attributeType="String"/>
+        <attribute name="quoteAsset" optional="YES" attributeType="String"/>
+        <attribute name="quotePrecision" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="status" attributeType="String"/>
+        <attribute name="symbol" attributeType="String"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="klines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Kline" inverseName="symbol" inverseEntity="Kline"/>
+        <fetchIndex name="bySymbol">
+            <fetchIndexElement property="symbol" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Target" representedClassName="TargetEntity" syncable="YES">
+        <attribute name="baseCoin" attributeType="String" defaultValueString=""/>
+        <attribute name="quoteCoin" attributeType="String" defaultValueString="BTC"/>
+        <attribute name="target" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <configuration name="Cloud" usedWithCloudKit="YES">
+        <memberEntity name="Target"/>
+    </configuration>
+    <elements>
+        <element name="Asset" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="Kline" positionX="-54" positionY="54" width="128" height="209"/>
+        <element name="Symbol" positionX="-63" positionY="-18" width="128" height="224"/>
+        <element name="Target" positionX="-36" positionY="126" width="128" height="104"/>
+    </elements>
+</model>

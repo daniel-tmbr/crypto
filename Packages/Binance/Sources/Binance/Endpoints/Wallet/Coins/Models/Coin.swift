@@ -17,6 +17,6 @@ public struct Coin: Decodable, CustomStringConvertible {
     public let withdrawing: BinanceDouble
     
     public var description: String {
-        "\(String(describing: Self.self)): \(name) (\(coin.value))"
+        "\(String(describing: Self.self)): \(name) (\(coin.value) \(trading)\n\(networkList)"
     }
 }

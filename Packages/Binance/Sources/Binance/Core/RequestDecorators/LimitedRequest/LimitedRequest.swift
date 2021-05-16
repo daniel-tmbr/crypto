@@ -3,8 +3,8 @@ import Rest
 
 @dynamicMemberLookup
 struct LimitedRequest<R: Request>: Request, Limited {
-    typealias Parameters = R.RequestDataType
-    typealias Response = R.ResponseDataType
+    typealias Input = R.Input
+    typealias Output = R.Output
     
     private let request: R
     private let limitService: LimitService
@@ -27,12 +27,12 @@ struct LimitedRequest<R: Request>: Request, Limited {
         self.decoder = decoder
     }
     
-    func assemble(from data: Parameters) throws -> URLRequest {
+    func assemble(from data: Input) throws -> URLRequest {
         try limitService.validate(request: self)
         return try request.assemble(from: data)
     }
     
-    func parse(data: Data, response: URLResponse) throws -> Response {
+    func parse(data: Data, response: URLResponse) throws -> Output {
         if let httpResponse = response as? HTTPURLResponse,
            let error = try? decoder.decode(BinanceError.self, from: data),
            let violation = limitViolation(from: error, headers: httpResponse.allHeaderFields) {

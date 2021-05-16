@@ -5,6 +5,9 @@ import Foundation
 import Rest
 
 struct ExchangeInfoRequest: BinanceRequest {
+    typealias Input = Void
+    typealias Output = ExchangeInfo
+    
     private let url: URL
     private let decoder: JSONDecoder
     
@@ -19,10 +22,10 @@ struct ExchangeInfoRequest: BinanceRequest {
     }
     
     func parse(data: Data, response: URLResponse) throws -> ExchangeInfo {
-        try decoder.decode(ResponseDataType.self, from: data)
+        try decoder.decode(Output.self, from: data)
     }
 
-    func apiRequest() -> BinanceApiRequest<RequestDataType, ResponseDataType> {
+    func apiRequest() -> BinanceApiRequest<Void, ExchangeInfo> {
         binanceApiRequest()
     }
 }

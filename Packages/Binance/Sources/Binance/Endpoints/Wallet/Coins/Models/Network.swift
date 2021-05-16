@@ -20,4 +20,8 @@ public struct Network: Decodable {
     public let withdrawFee: BinanceDouble
     public let withdrawIntegerMultiple: BinanceDouble?
     public let withdrawMin: BinanceDouble
+    
+    public var description: String {
+        "\(String(describing: Self.self)): \(name) (\(coin.value)"
+    }
 }

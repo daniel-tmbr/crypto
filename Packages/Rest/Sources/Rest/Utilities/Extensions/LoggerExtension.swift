@@ -3,7 +3,7 @@ import Foundation
 
 extension Logger {
     public static let request = Logger(
-        subsystem: "me.tmbr.trade.rest",
+        subsystem: "me.tmbr.crypto.rest",
         category: "request"
     )
 }

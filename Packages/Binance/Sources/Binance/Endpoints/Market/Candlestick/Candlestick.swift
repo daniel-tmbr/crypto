@@ -31,7 +31,7 @@ public struct Candlestick: Decodable {
     public let close: BinanceDouble
     public let volume: BinanceDouble
     public let closeTime: TimeInterval
-    public let quoteAsseVolume: BinanceDouble
+    public let quoteAssetVolume: BinanceDouble
     public let numberOfTrades: Int
     public let takerBuyBaseAssetVolume: BinanceDouble
     public let takerBuyQuoteAssetVolume: BinanceDouble
@@ -44,7 +44,7 @@ public struct Candlestick: Decodable {
 //        close: Double,
 //        volume: Double,
 //        closeTime: TimeInterval,
-//        quoteAsseVolume: Double,
+//        quoteAssetVolume: Double,
 //        numberOfTrades: Int,
 //        takerBuyBaseAssetVolume: Double,
 //        takerBuyQuoteAssetVolume: Double
@@ -73,7 +73,7 @@ public struct Candlestick: Decodable {
         close = try container.decode(BinanceDouble.self)
         volume = try container.decode(BinanceDouble.self)
         closeTime = try container.decode(TimeInterval.self)
-        quoteAsseVolume = try container.decode(BinanceDouble.self)
+        quoteAssetVolume = try container.decode(BinanceDouble.self)
         numberOfTrades = try container.decode(Int.self)
         takerBuyBaseAssetVolume = try container.decode(BinanceDouble.self)
         takerBuyQuoteAssetVolume = try container.decode(BinanceDouble.self)

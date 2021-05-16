@@ -12,8 +12,8 @@ public struct ResponsePublisher<Response: Decodable>: Publisher {
         request: R,
         requestDataPublisher: Upstream
     )
-    where R.ResponseDataType == Response,
-          Upstream.Output == R.RequestDataType,
+    where R.Output == Response,
+          Upstream.Output == R.Input,
           Upstream.Failure == Never
     {
         publisher = requestDataPublisher
@@ -33,9 +33,9 @@ public struct ResponsePublisher<Response: Decodable>: Publisher {
     public init<R: Request>(
         urlSession: URLSession,
         request: R,
-        requestData: R.RequestDataType
+        requestData: R.Input
     )
-    where R.ResponseDataType == Response
+    where R.Output == Response
     {
         self.init(
             urlSession: urlSession,

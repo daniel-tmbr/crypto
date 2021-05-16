@@ -3,7 +3,7 @@ import SwiftUI
 public enum Screen: String {
     case home
     case account
-    case coins
+    case market
     case settings
 }
 

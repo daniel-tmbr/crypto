@@ -5,6 +5,9 @@ import Foundation
 import Rest
 
 struct CandlestickRequest: BinanceRequest {
+    typealias Input = CandlestickParams
+    typealias Output = [Candlestick]
+    
     private let url: URL
     private let decoder: JSONDecoder
     
@@ -27,10 +30,10 @@ struct CandlestickRequest: BinanceRequest {
     }
     
     func parse(data: Data, response: URLResponse) throws -> [Candlestick] {
-        try decoder.decode(ResponseDataType.self, from: data)
+        try decoder.decode(Output.self, from: data)
     }
 
-    func apiRequest() -> BinanceApiRequest<RequestDataType, ResponseDataType> {
+    func apiRequest() -> BinanceApiRequest<CandlestickParams, [Candlestick]> {
         binanceApiRequest()
     }
 }

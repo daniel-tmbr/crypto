@@ -5,6 +5,9 @@ import Foundation
 import Rest
 
 struct SystemStatusRequest: BinanceRequest {
+    typealias Input = Void
+    typealias Output = SystemStatus
+    
     private let baseUrl: URL
     private let decoder: JSONDecoder
 
@@ -15,19 +18,18 @@ struct SystemStatusRequest: BinanceRequest {
     }
 
     func assemble(from data: Void) throws -> URLRequest {
-        let url = baseUrl.appendingPathComponent("/wapi/v3/systemStatus.html")
-        return URLRequest(
-            url: url,
+        URLRequest(
+            url: baseUrl.appendingPathComponent("/wapi/v3/systemStatus.html"),
             cachePolicy: .default,
             timeoutInterval: .timeout
         )
     }
 
     func parse(data: Data, response: URLResponse) throws -> SystemStatus {
-        return try decoder.decode(SystemStatus.self, from: data)
+        try decoder.decode(SystemStatus.self, from: data)
     }
 
     func apiRequest() -> BinanceApiRequest<Void, SystemStatus> {
-        apiRequest()
+        binanceApiRequest()
     }
 }

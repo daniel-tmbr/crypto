@@ -4,8 +4,8 @@ import Rest
 
 @dynamicMemberLookup
 struct SecuredRequest<R: Request>: Request {
-    typealias Parameters = R.RequestDataType
-    typealias Response = R.ResponseDataType
+    typealias Input = R.Input
+    typealias Output = R.Output
     
     private let request: R
     private let apiKeyReader: ApiSecurityKeyReader
@@ -34,7 +34,7 @@ struct SecuredRequest<R: Request>: Request {
         self.lifespan = lifespan
     }
     
-    func assemble(from data: Parameters) throws -> URLRequest {
+    func assemble(from data: Input) throws -> URLRequest {
         var urlRequest = try request.assemble(from: data)
         switch security {
         case .trade, .margin, .userData:
@@ -47,18 +47,19 @@ struct SecuredRequest<R: Request>: Request {
         return urlRequest
     }
     
-    func parse(data: Data, response: URLResponse) throws -> Response {
+    func parse(data: Data, response: URLResponse) throws -> Output {
         try request.parse(data: data, response: response)
     }
     
     private func addApiKey(to urlRequest: inout URLRequest) throws {
-        guard let key = try apiKeyReader.read() else { throw SigningError.apiKeyMissing }
+        guard let key = try apiKeyReader.read()
+            else { throw SigningError.apiKeyMissing }
         urlRequest.addHeaderField(ApiKey(value: key))
     }
     
     private func sign(urlRequest: inout URLRequest) throws {
         guard let secret = try apiSecretReader.read()
-            else { throw SigningError.apiSecretMissing}
+            else { throw SigningError.apiSecretMissing }
         guard let url = urlRequest.url
             else { throw SigningError.missingUrl }
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false)

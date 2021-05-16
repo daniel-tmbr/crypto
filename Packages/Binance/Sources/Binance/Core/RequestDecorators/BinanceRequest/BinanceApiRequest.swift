@@ -1,11 +1,8 @@
 import Foundation
 import Rest
 
-struct BinanceApiRequest<RequestData, ResponseData: Decodable>: Request {
-    typealias Input = RequestData
-    typealias Output = ResponseData
-    
-    private let request: AnyRequest<RequestData, ResponseData>
+struct BinanceApiRequest<Input, Output: Decodable>: Request {
+    private let request: AnyRequest<Input, Output>
     private let decoder: JSONDecoder
     
     init<R: Request>(request: R,
@@ -13,8 +10,8 @@ struct BinanceApiRequest<RequestData, ResponseData: Decodable>: Request {
                      weight: UInt = 1,
                      security: SecurityType = .none,
                      decoder: JSONDecoder = .binance)
-    where R.RequestDataType == RequestData,
-          R.ResponseDataType == ResponseData {
+    where R.Input == Input,
+          R.Output == Output {
         self.request = request
             .limited(category: limitCategory, weight: weight)
             .signed(security: security)
@@ -22,11 +19,11 @@ struct BinanceApiRequest<RequestData, ResponseData: Decodable>: Request {
         self.decoder = decoder
     }
     
-    func assemble(from data: RequestData) throws -> URLRequest {
+    func assemble(from data: Input) throws -> URLRequest {
         try request.assemble(from: data)
     }
     
-    func parse(data: Data, response: URLResponse) throws -> ResponseData {
+    func parse(data: Data, response: URLResponse) throws -> Output {
         do {
             return try request.parse(data: data, response: response)
         } catch {
@@ -43,7 +40,7 @@ extension Request {
     func binanceApiRequest(limitCategory: Limitation.Category = .weight,
                            weight: UInt = 1,
                            security: SecurityType = .none,
-                           decoder: JSONDecoder = .binance) -> BinanceApiRequest<RequestDataType, ResponseDataType> {
+                           decoder: JSONDecoder = .binance) -> BinanceApiRequest<Input, Output> {
         BinanceApiRequest(
             request: self,
             limitCategory: limitCategory,

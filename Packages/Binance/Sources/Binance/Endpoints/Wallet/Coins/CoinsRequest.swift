@@ -5,6 +5,9 @@ import Foundation
 import Rest
 
 struct CoinsRequest: BinanceRequest {
+    typealias Input = CoinParams
+    typealias Output = [Coin]
+    
     private let url: URL
     private let decoder: JSONDecoder
 
@@ -24,10 +27,15 @@ struct CoinsRequest: BinanceRequest {
     }
 
     func parse(data: Data, response: URLResponse) throws -> [Coin] {
-        try decoder.decode(ResponseDataType.self, from: data)
+        try decoder.decode(Output.self, from: data)
     }
 
-    func apiRequest() -> BinanceApiRequest<RequestDataType, ResponseDataType> {
-        binanceApiRequest(security: .userData)
+    func apiRequest() -> BinanceApiRequest<Input, Output> {
+        logged { (logger, _, _) in
+            logger.debug("Coins response is parsing")
+        } parseErrorLogging: { (logger, error, _ , _) in
+            logger.debug("Coins response parsing has failed")
+        }
+        .binanceApiRequest(security: .userData)
     }
 }

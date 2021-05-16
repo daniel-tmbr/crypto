@@ -5,6 +5,9 @@ import Foundation
 import Rest
 
 struct AccountSnapshotRequest<SnapshotConfig>: BinanceRequest where SnapshotConfig: SnapshotRequestConfig {
+    typealias Input = AccountSnapshotParams
+    typealias Output = AccountSnapshot<SnapshotConfig.Response>
+    
     private let url: URL
     private let config: SnapshotConfig
     private let decoder: JSONDecoder
@@ -30,10 +33,10 @@ struct AccountSnapshotRequest<SnapshotConfig>: BinanceRequest where SnapshotConf
     }
     
     func parse(data: Data, response: URLResponse) throws -> AccountSnapshot<SnapshotConfig.Response> {
-        try decoder.decode(ResponseDataType.self, from: data)
+        try decoder.decode(Output.self, from: data)
     }
 
-    func apiRequest() -> BinanceApiRequest<RequestDataType, ResponseDataType> {
+    func apiRequest() -> BinanceApiRequest<AccountSnapshotParams, AccountSnapshot<SnapshotConfig.Response>> {
         binanceApiRequest(security: .userData)
     }
 }

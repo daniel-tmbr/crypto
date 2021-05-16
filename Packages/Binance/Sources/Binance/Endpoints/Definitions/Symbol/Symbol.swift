@@ -2,9 +2,9 @@ import Foundation
 
 public struct Symbol: Decodable {
     public let symbol: SymbolPair
-    public let status: SymbolType
+    public let status: SymbolStatus
     public let baseAsset: Asset
-    public let baseAssetPrecision: Int
+    public let basePrecision: Int
     public let quoteAsset: Asset
     public let quotePrecision: Int
     public let orderTypes: [OrderType]

@@ -1,6 +1,6 @@
 import Foundation
 
-public enum SymbolType: Decodable {
+public enum SymbolStatus: Decodable {
     case preTrading
     case trading
     case postTrading

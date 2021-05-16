@@ -18,7 +18,7 @@ extension ApiSecurity {
         name: "Binance",
         keys: [
             SecurityKey(name: L10n.Binance.apiKey, key: SecureStringStore.binanceApiKey),
-            SecurityKey(name: L10n.Binance.apiSecret, key: SecureStringStore.binanceApiKey),
+            SecurityKey(name: L10n.Binance.apiSecret, key: SecureStringStore.binanceApiSecret),
         ],
         help: URL(string: L10n.Binance.helpUrl)!
     )

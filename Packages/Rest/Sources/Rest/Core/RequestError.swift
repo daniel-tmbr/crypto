@@ -9,7 +9,7 @@ public struct RequestError: Error {
     public let category: Category
     
     public var localizedDescription: String {
-        "\(error.localizedDescription) - \(error)"
+        "RequestError.\(category):\n\(error.localizedDescription)\n\n\(error)"
     }
 }
 

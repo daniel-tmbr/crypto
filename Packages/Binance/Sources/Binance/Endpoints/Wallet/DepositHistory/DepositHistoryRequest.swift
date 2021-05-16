@@ -5,6 +5,9 @@ import Foundation
 import Rest
 
 struct DepositHistoryRequest: BinanceRequest {
+    typealias Input = DepositHistoryParams
+    typealias Output = [Deposit]
+    
     private let url: URL
     private let decoder: JSONDecoder
 
@@ -27,10 +30,10 @@ struct DepositHistoryRequest: BinanceRequest {
     }
 
     func parse(data: Data, response: URLResponse) throws -> [Deposit] {
-        try decoder.decode(ResponseDataType.self, from: data)
+        try decoder.decode(Output.self, from: data)
     }
 
-    func apiRequest() -> BinanceApiRequest<DepositHistoryParams, [Deposit]> {
+    func apiRequest() -> BinanceApiRequest<Input, Output> {
         binanceApiRequest(security: .userData)
     }
 }

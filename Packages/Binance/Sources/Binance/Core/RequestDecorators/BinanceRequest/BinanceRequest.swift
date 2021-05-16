@@ -2,5 +2,5 @@ import Foundation
 import Rest
 
 protocol BinanceRequest: Request {
-    func apiRequest() -> BinanceApiRequest<RequestDataType, ResponseDataType>
+    func apiRequest() -> BinanceApiRequest<Self.Input, Self.Output>
 }

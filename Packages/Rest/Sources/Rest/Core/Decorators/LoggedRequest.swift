@@ -3,9 +3,12 @@ import os.log
 
 @dynamicMemberLookup
 public struct LoggedRequest<R: Request>: Request {
-    public typealias AssemblyLogging = (Logger, URLRequest, R.RequestDataType) -> Void
-    public typealias AssemblyErrorLogging = (Logger, Error, R.RequestDataType) -> Void
-    public typealias ParseLogging = (Logger, URLResponse, R.ResponseDataType) -> Void
+    public typealias Input = R.Input
+    public typealias Output = R.Output
+    
+    public typealias AssemblyLogging = (Logger, URLRequest, R.Input) -> Void
+    public typealias AssemblyErrorLogging = (Logger, Error, R.Input) -> Void
+    public typealias ParseLogging = (Logger, URLResponse, R.Output) -> Void
     public typealias ParseErrorLogging = (Logger, Error, URLResponse, Data) -> Void
     
     private let request: R
@@ -32,7 +35,7 @@ public struct LoggedRequest<R: Request>: Request {
         self.parseErrorLogging = parseErrorLogging
     }
     
-    public func assemble(from data: R.RequestDataType) throws -> URLRequest {
+    public func assemble(from data: Input) throws -> URLRequest {
         do {
             let urlRequest = try request.assemble(from: data)
             assemblyLogging?(logger, urlRequest, data)
@@ -43,7 +46,7 @@ public struct LoggedRequest<R: Request>: Request {
         }
     }
     
-    public func parse(data: Data, response: URLResponse) throws -> R.ResponseDataType {
+    public func parse(data: Data, response: URLResponse) throws -> Output {
         do {
             let parsedResponse = try request.parse(data: data, response: response)
             parseLogging?(logger, response, parsedResponse)

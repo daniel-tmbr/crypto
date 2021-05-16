@@ -7,19 +7,11 @@ public struct RetryRequest<Input, Output: Decodable>: TopLevelRequest {
     private let request: AnyTopLevelRequest<Input, Output>
     private let condition: Condition
     
-    public init<R: TopLevelRequest>(topLevelRequest: R, condition: @escaping Condition)
+    public init<R: TopLevelRequest>(request: R, condition: @escaping Condition)
     where R.Input == Self.Input,
           R.Output == Self.Output
     {
-        self.request = topLevelRequest.ereaseToAnyTopLevelRequest()
-        self.condition = condition
-    }
-    
-    public init<R: Request>(request: R, condition: @escaping Condition)
-    where R.RequestDataType == Input,
-          R.ResponseDataType == Output
-    {
-        self.request = request.topLevelRequest()
+        self.request = request.ereaseToAnyTopLevelRequest()
         self.condition = condition
     }
     
@@ -46,8 +38,8 @@ public struct RetryRequest<Input, Output: Decodable>: TopLevelRequest {
 }
 
 extension Request {
-    public typealias RetryCondition = RetryRequest<RequestDataType, ResponseDataType>.Condition
-    public func retry(condition: @escaping RetryCondition) -> RetryRequest<RequestDataType, ResponseDataType> {
+    public typealias RetryCondition = RetryRequest<Input, Output>.Condition
+    public func retry(condition: @escaping RetryCondition) -> RetryRequest<Input, Output> {
         RetryRequest(request: self, condition: condition)
     }
 }
@@ -55,6 +47,6 @@ extension Request {
 extension TopLevelRequest {
     public typealias RetryCondition = RetryRequest<Input, Output>.Condition
     public func retry(condition: @escaping RetryCondition) -> RetryRequest<Input, Output> {
-        RetryRequest(topLevelRequest: self, condition: condition)
+        RetryRequest(request: self, condition: condition)
     }
 }
