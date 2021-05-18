@@ -1,35 +1,49 @@
+import ComposableArchitecture
 import SwiftUI
 
-public enum Screen: String {
-    case home
-    case account
-    case coins
-    case settings
-}
-
 struct AppView: View {
+    enum Action {
+        case launched
+    }
+    
     #if os(iOS)
     @Environment(\.horizontalSizeClass)
     private var horizontalSizeClass
     #endif
     
-    @AppStorage("app.screen")
-    private var screen: Screen = .home
+    private let store: Store<AppState, AppAction>
+    @ObservedObject
+    private var viewStore: ViewStore<Void, Action>
+    
+    init(store: Store<AppState, AppAction>) {
+        self.store = store
+        viewStore = ViewStore(store.scope(
+            state: { _ in () },
+            action: { _ in .launched }
+        ))
+        viewStore.send(.launched)
+    }
     
     var body: some View {
         #if os(iOS)
         switch horizontalSizeClass {
-        case .compact: AppTabNavigation(screen: $screen)
-        default: AppSidebarNavigation(screen: $screen)
+        case .compact:
+            AppTabNavigation(store: store)
+        default:
+            AppSidebarNavigation(store: store)
         }
         #else
-        AppSidebarNavigation(screen: $screen)
+        AppSidebarNavigation(store: store)
         #endif
     }
 }
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView()
+        AppView(store: Store(
+            initialState: AppState(symbols: .empty),
+            reducer: Reducer<AppState, AppAction, AppEnvironment>.app,
+            environment: AppEnvironment.mock
+        ))
     }
 }

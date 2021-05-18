@@ -28,6 +28,6 @@ struct SystemStatusRequest: BinanceRequest {
     }
 
     func apiRequest() -> BinanceApiRequest<Void, SystemStatus> {
-        apiRequest()
+        binanceApiRequest()
     }
 }

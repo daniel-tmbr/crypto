@@ -1,11 +1,17 @@
+import ComposableArchitecture
 import SwiftUI
 
 @main
-struct cryptoApp: App {
-    
+struct cryptoApp: App {    
     var body: some Scene {
         WindowGroup {
-            AppView()
+            AppView(
+                store: Store(
+                    initialState: AppState(symbols: .empty),
+                    reducer: Reducer<AppState, AppAction, AppEnvironment>.app,
+                    environment: AppEnvironment.live
+                )
+            )
         }
         .commands {
             SidebarCommands()

@@ -1,51 +1,52 @@
+import ComposableArchitecture
 import SwiftUI
 
 struct AppSidebarNavigation: View {
-
-    @Binding
-    private var screen: Screen?
+    private let store: Store<AppState, AppAction>
+    private let viewStore: ViewStore<Screen, ScreenAction>
+    private let selection: Binding<Screen?>
     
-    init(screen: Binding<Screen>) {
-        self._screen = Binding(screen)
+    init(store: Store<AppState, AppAction>) {
+        let viewStore = ViewStore(store.scope(
+            state: { $0.screen },
+            action: { .screen($0) }
+        ))
+        let selection = Binding<Screen?>(
+            get: { viewStore.state },
+            set: { viewStore.send(.change($0 ?? .home)) }
+        )
+        self.store = store
+        self.viewStore = viewStore
+        self.selection = selection
+        viewStore.send(.load)
     }
     
     private var sidebar: some View {
-        List(selection: $screen) {
-            NavigationLink(
-                destination: HomeView(),
-                tag: Screen.home,
-                selection: $screen
-            ) {
+        List(selection: selection) {
+            NavigationLink(destination: HomeView()) {
                 Label(L10n.Navigation.home.localizedKey, systemImage: "house")
                     .accessibilityLabel(L10n.Navigation.home.localizedKey)
             }
             .tag(Screen.home)
             
-            NavigationLink(
-                destination: AccountView(),
-                tag: Screen.account,
-                selection: $screen
-            ) {
+            NavigationLink(destination: AccountView()) {
                 Label(L10n.Navigation.account.localizedKey, systemImage: "person.crop.circle")
                     .accessibilityLabel(L10n.Navigation.account.localizedKey)
             }
             .tag(Screen.account)
 
-            NavigationLink(
-                destination: CoinsView(),
-                tag: Screen.coins,
-                selection: $screen
+            NavigationLink(destination: SymbolsView(
+                store: store.scope(
+                    state: \.symbols,
+                    action: AppAction.symbols
+                ))
             ) {
                 Label(L10n.Navigation.coins.localizedKey, systemImage: "bitcoinsign.circle")
                     .accessibilityLabel(L10n.Navigation.coins.localizedKey)
             }
             .tag(Screen.coins)
             
-            NavigationLink(
-                destination: SettingsView(),
-                tag: Screen.settings,
-                selection: $screen
-            ) {
+            NavigationLink(destination: SettingsView()) {
                 Label(L10n.Navigation.settings.localizedKey, systemImage: "gearshape")
                     .accessibilityLabel(L10n.Navigation.settings.localizedKey)
             }
@@ -66,6 +67,12 @@ struct AppSidebarNavigation: View {
 
 struct AppSidebarNavigation_Previews: PreviewProvider {
     static var previews: some View {
-        AppSidebarNavigation(screen: .constant(Screen.home))
+        AppSidebarNavigation(
+            store: Store(
+                initialState: AppState(),
+                reducer: Reducer<AppState, AppAction, AppEnvironment>.app,
+                environment: .live
+            )
+        )
     }
 }

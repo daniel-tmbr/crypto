@@ -19,3 +19,9 @@ public extension TopLevelRequest {
         publisher(requestDataPublisher: Just(input))
     }
 }
+
+public extension TopLevelRequest where Input == Void {
+    func publisher(urlSession: URLSession = .shared) -> ResponsePublisher<Output> {
+        publisher(urlSession: urlSession, requestDataPublisher: Just(()))
+    }
+}
